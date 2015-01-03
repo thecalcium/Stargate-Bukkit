@@ -78,7 +78,7 @@ public final class Stargate extends JavaPlugin {
 
     private FileConfiguration newConfig;
     private PluginManager pm;
-    private EconomyHandler economyHandler;
+    private EconomyHandler economyHandler = new EconomyHandler(this);
     private LangLoader lang;
     private String portalFolder;
     private String gateFolder;
@@ -148,7 +148,6 @@ public final class Stargate extends JavaPlugin {
         this.migrate();
         this.reloadGates();
 
-        economyHandler = new EconomyHandler(this);
         // Load economy
         economyHandler.setupEconomy(pm);
 
