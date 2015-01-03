@@ -1,12 +1,9 @@
-package net.TheDgtl.Stargate.event;
-
-import net.TheDgtl.Stargate.Portal;
-
-import org.bukkit.event.Cancellable;
-import org.bukkit.event.Event;
+package net.thedgtl.stargate;
 
 /**
  * Stargate - A portal plugin for Bukkit
+ * Copyright (C) 2011 Shaun (sturmeh)
+ * Copyright (C) 2011 Dinnerbone
  * Copyright (C) 2011, 2012 Steven "Drakia" Scott <Contact@TheDgtl.net>
  * 
  * This program is free software: you can redistribute it and/or modify
@@ -23,26 +20,26 @@ import org.bukkit.event.Event;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public abstract class StargateEvent extends Event implements Cancellable {
-	protected Portal portal;
-	protected boolean cancelled;
-	
-	public StargateEvent(String event, Portal portal) {
-		this.portal = portal;
-		this.cancelled = false;
+public class RelativeBlockVector {
+	private int right = 0;
+	private int depth = 0;
+	private int distance = 0;
+
+	public RelativeBlockVector(int right, int depth, int distance) {
+		this.right = right;
+		this.depth = depth;
+		this.distance = distance;
 	}
-	
-	public Portal getPortal() {
-		return portal;
+
+	public int getRight() {
+		return right;
 	}
-	
-	@Override
-	public boolean isCancelled() {
-		return this.cancelled;
+
+	public int getDepth() {
+		return depth;
 	}
-	
-	@Override
-	public void setCancelled(boolean cancelled) {
-		this.cancelled = cancelled;
+
+	public int getDistance() {
+		return distance;
 	}
 }

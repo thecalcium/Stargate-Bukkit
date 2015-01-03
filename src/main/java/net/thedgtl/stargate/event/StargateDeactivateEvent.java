@@ -1,8 +1,8 @@
-package net.TheDgtl.Stargate.event;
+package net.thedgtl.stargate.event;
 
 import org.bukkit.event.HandlerList;
 
-import net.TheDgtl.Stargate.Portal;
+import net.thedgtl.stargate.Portal;
 
 /**
  * Stargate - A portal plugin for Bukkit
@@ -22,9 +22,7 @@ import net.TheDgtl.Stargate.Portal;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class StargateCloseEvent extends StargateEvent {
-	private boolean force;
-	
+public class StargateDeactivateEvent extends StargateEvent {
 	private static final HandlerList handlers = new HandlerList();
 	
 	public HandlerList getHandlers() {
@@ -34,17 +32,8 @@ public class StargateCloseEvent extends StargateEvent {
 	public static HandlerList getHandlerList() {
 		return handlers;
 	}
-	public StargateCloseEvent(Portal portal, boolean force) {
-		super("StargateCloseEvent", portal);
+	public StargateDeactivateEvent(Portal portal) {
+		super("StargatDeactivateEvent", portal);
 		
-		this.force = force;
-	}
-	
-	public boolean getForce() {
-		return force;
-	}
-	
-	public void setForce(boolean force) {
-		this.force = force;
 	}
 }

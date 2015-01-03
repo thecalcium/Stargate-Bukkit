@@ -1,6 +1,7 @@
-package net.TheDgtl.Stargate.event;
+package net.thedgtl.stargate.event;
 
-import net.TheDgtl.Stargate.Portal;
+import net.thedgtl.stargate.Portal;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 
@@ -22,11 +23,9 @@ import org.bukkit.event.HandlerList;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class StargateDestroyEvent extends StargateEvent {
+public class StargateOpenEvent extends StargateEvent {
 	private Player player;
-	private boolean deny;
-	private String denyReason;
-	private int cost;
+	private boolean force;
 	
 	private static final HandlerList handlers = new HandlerList();
 	
@@ -37,41 +36,26 @@ public class StargateDestroyEvent extends StargateEvent {
 	public static HandlerList getHandlerList() {
 		return handlers;
 	}
-	
-	public StargateDestroyEvent(Portal portal, Player player, boolean deny, String denyMsg, int cost) {
-		super("StargateDestroyEvent", portal);
+	public StargateOpenEvent(Player player, Portal portal, boolean force) {
+		super ("StargateOpenEvent", portal);
+		
 		this.player = player;
-		this.deny = deny;
-		this.denyReason = denyMsg;
-		this.cost = cost;
+		this.force = force;
 	}
 	
+	/**
+	 * Return the player than opened the gate.
+	 * @return player than opened the gate
+	 */
 	public Player getPlayer() {
 		return player;
 	}
 	
-	public boolean getDeny() {
-		return deny;
+	public boolean getForce() {
+		return force;
 	}
 	
-	public void setDeny(boolean deny) {
-		this.deny = deny;
+	public void setForce(boolean force) {
+		this.force = force;
 	}
-	
-	public String getDenyReason() {
-		return denyReason;
-	}
-	
-	public void setDenyReason(String denyReason) {
-		this.denyReason = denyReason;
-	}
-	
-	public int getCost() {
-		return cost;
-	}
-	
-	public void setCost(int cost) {
-		this.cost = cost;
-	}
-
 }

@@ -1,4 +1,4 @@
-package net.TheDgtl.Stargate;
+package net.thedgtl.stargate;
 
 import org.bukkit.Location;
 import org.bukkit.Material;

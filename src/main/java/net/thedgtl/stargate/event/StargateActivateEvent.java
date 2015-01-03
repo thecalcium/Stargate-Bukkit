@@ -1,9 +1,11 @@
-package net.TheDgtl.Stargate.event;
+package net.thedgtl.stargate.event;
 
-import net.TheDgtl.Stargate.Portal;
+import java.util.ArrayList;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
+
+import net.thedgtl.stargate.Portal;
 
 /**
  * Stargate - A portal plugin for Bukkit
@@ -23,9 +25,10 @@ import org.bukkit.event.HandlerList;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class StargateOpenEvent extends StargateEvent {
+public class StargateActivateEvent extends StargateEvent {
 	private Player player;
-	private boolean force;
+	private ArrayList<String> destinations;
+	private String destination;
 	
 	private static final HandlerList handlers = new HandlerList();
 	
@@ -36,26 +39,31 @@ public class StargateOpenEvent extends StargateEvent {
 	public static HandlerList getHandlerList() {
 		return handlers;
 	}
-	public StargateOpenEvent(Player player, Portal portal, boolean force) {
-		super ("StargateOpenEvent", portal);
+	public StargateActivateEvent(Portal portal, Player player, ArrayList<String> destinations, String destination) {
+		super("StargatActivateEvent", portal);
 		
 		this.player = player;
-		this.force = force;
+		this.destinations = destinations;
+		this.destination = destination;
 	}
 	
-	/**
-	 * Return the player than opened the gate.
-	 * @return player than opened the gate
-	 */
 	public Player getPlayer() {
 		return player;
 	}
 	
-	public boolean getForce() {
-		return force;
+	public ArrayList<String> getDestinations() {
+		return destinations;
 	}
 	
-	public void setForce(boolean force) {
-		this.force = force;
+	public void setDestinations(ArrayList<String> destinations) {
+		this.destinations = destinations;
+	}
+	
+	public String getDestination() {
+		return destination;
+	}
+	
+	public void setDestination(String destination) {
+		this.destination = destination;
 	}
 }

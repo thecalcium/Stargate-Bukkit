@@ -1,8 +1,9 @@
-package net.TheDgtl.Stargate.event;
+package net.thedgtl.stargate.event;
 
-import org.bukkit.event.HandlerList;
+import net.thedgtl.stargate.Portal;
 
-import net.TheDgtl.Stargate.Portal;
+import org.bukkit.event.Cancellable;
+import org.bukkit.event.Event;
 
 /**
  * Stargate - A portal plugin for Bukkit
@@ -22,18 +23,26 @@ import net.TheDgtl.Stargate.Portal;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class StargateDeactivateEvent extends StargateEvent {
-	private static final HandlerList handlers = new HandlerList();
+public abstract class StargateEvent extends Event implements Cancellable {
+	protected Portal portal;
+	protected boolean cancelled;
 	
-	public HandlerList getHandlers() {
-		return handlers;
+	public StargateEvent(String event, Portal portal) {
+		this.portal = portal;
+		this.cancelled = false;
 	}
 	
-	public static HandlerList getHandlerList() {
-		return handlers;
+	public Portal getPortal() {
+		return portal;
 	}
-	public StargateDeactivateEvent(Portal portal) {
-		super("StargatDeactivateEvent", portal);
-		
+	
+	@Override
+	public boolean isCancelled() {
+		return this.cancelled;
+	}
+	
+	@Override
+	public void setCancelled(boolean cancelled) {
+		this.cancelled = cancelled;
 	}
 }

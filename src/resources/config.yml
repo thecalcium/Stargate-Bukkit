@@ -40,7 +40,6 @@ handleVehicles: true
 sortLists: false
 protectEntrance: false
 signColor: BLACK
-useiconomy: false
 createcost: 0
 destroycost: 0
 usecost: 0
@@ -50,3 +49,4 @@ freegatesgreen: false
 debug: false
 permdebug: false
 enableBungee: false
+enableEconomy: false

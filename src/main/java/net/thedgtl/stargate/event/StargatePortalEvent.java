@@ -1,6 +1,8 @@
-package net.TheDgtl.Stargate.event;
+package net.thedgtl.stargate.event;
 
-import net.TheDgtl.Stargate.Portal;
+import net.thedgtl.stargate.Portal;
+
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 
@@ -22,12 +24,10 @@ import org.bukkit.event.HandlerList;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class StargateCreateEvent extends StargateEvent {
+public class StargatePortalEvent extends StargateEvent {
 	private Player player;
-	private boolean deny;
-	private String denyReason;
-	private String[] lines;
-	private int cost;
+	private Portal destination;
+	private Location exit;
 	
 	private static final HandlerList handlers = new HandlerList();
 	
@@ -39,45 +39,42 @@ public class StargateCreateEvent extends StargateEvent {
 		return handlers;
 	}
 	
-	public StargateCreateEvent(Player player, Portal portal, String[] lines, boolean deny, String denyReason, int cost) {
-		super("StargateCreateEvent", portal);
+	public StargatePortalEvent(Player player, Portal portal, Portal dest, Location exit) {
+		super ("StargatePortalEvent", portal);
+		
 		this.player = player;
-		this.lines = lines;
-		this.deny = deny;
-		this.denyReason = denyReason;
-		this.cost = cost;
+		this.destination = dest;
+		this.exit = exit;
 	}
 	
+	/**
+	 * Return the player that went through the gate.
+	 * @return player that went through the gate
+	 */
 	public Player getPlayer() {
 		return player;
 	}
 	
-	public String getLine(int index) throws IndexOutOfBoundsException {
-		return lines[index];
+	/**
+	 * Return the destination gate
+	 * @return destination gate
+	 */
+	public Portal getDestination() {
+		return destination;
 	}
 	
-	public boolean getDeny() {
-		return deny;
+	/**
+	 * Return the location of the players exit point
+	 * @return org.bukkit.Location Location of the exit point
+	 */
+	public Location getExit() {
+		return exit;
 	}
 	
-	public void setDeny(boolean deny) {
-		this.deny = deny;
+	/**
+	 * Set the location of the players exit point
+	 */
+	public void setExit(Location loc) {
+		this.exit = loc;
 	}
-	
-	public String getDenyReason() {
-		return denyReason;
-	}
-	
-	public void setDenyReason(String denyReason) {
-		this.denyReason = denyReason;
-	}
-	
-	public int getCost() {
-		return cost;
-	}
-	
-	public void setCost(int cost) {
-		this.cost = cost;
-	}
-
 }

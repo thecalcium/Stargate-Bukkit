@@ -1,9 +1,11 @@
-package net.TheDgtl.Stargate;
+package net.thedgtl.stargate.event;
+
+import org.bukkit.event.HandlerList;
+
+import net.thedgtl.stargate.Portal;
 
 /**
  * Stargate - A portal plugin for Bukkit
- * Copyright (C) 2011 Shaun (sturmeh)
- * Copyright (C) 2011 Dinnerbone
  * Copyright (C) 2011, 2012 Steven "Drakia" Scott <Contact@TheDgtl.net>
  * 
  * This program is free software: you can redistribute it and/or modify
@@ -20,26 +22,29 @@ package net.TheDgtl.Stargate;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class RelativeBlockVector {
-	private int right = 0;
-	private int depth = 0;
-	private int distance = 0;
-
-	public RelativeBlockVector(int right, int depth, int distance) {
-		this.right = right;
-		this.depth = depth;
-		this.distance = distance;
+public class StargateCloseEvent extends StargateEvent {
+	private boolean force;
+	
+	private static final HandlerList handlers = new HandlerList();
+	
+	public HandlerList getHandlers() {
+		return handlers;
 	}
-
-	public int getRight() {
-		return right;
+	
+	public static HandlerList getHandlerList() {
+		return handlers;
 	}
-
-	public int getDepth() {
-		return depth;
+	public StargateCloseEvent(Portal portal, boolean force) {
+		super("StargateCloseEvent", portal);
+		
+		this.force = force;
 	}
-
-	public int getDistance() {
-		return distance;
+	
+	public boolean getForce() {
+		return force;
+	}
+	
+	public void setForce(boolean force) {
+		this.force = force;
 	}
 }

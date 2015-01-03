@@ -1,11 +1,8 @@
-package net.TheDgtl.Stargate.event;
+package net.thedgtl.stargate.event;
 
-import java.util.ArrayList;
-
+import net.thedgtl.stargate.Portal;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
-
-import net.TheDgtl.Stargate.Portal;
 
 /**
  * Stargate - A portal plugin for Bukkit
@@ -25,10 +22,11 @@ import net.TheDgtl.Stargate.Portal;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class StargateActivateEvent extends StargateEvent {
+public class StargateDestroyEvent extends StargateEvent {
 	private Player player;
-	private ArrayList<String> destinations;
-	private String destination;
+	private boolean deny;
+	private String denyReason;
+	private int cost;
 	
 	private static final HandlerList handlers = new HandlerList();
 	
@@ -39,31 +37,41 @@ public class StargateActivateEvent extends StargateEvent {
 	public static HandlerList getHandlerList() {
 		return handlers;
 	}
-	public StargateActivateEvent(Portal portal, Player player, ArrayList<String> destinations, String destination) {
-		super("StargatActivateEvent", portal);
-		
+	
+	public StargateDestroyEvent(Portal portal, Player player, boolean deny, String denyMsg, int cost) {
+		super("StargateDestroyEvent", portal);
 		this.player = player;
-		this.destinations = destinations;
-		this.destination = destination;
+		this.deny = deny;
+		this.denyReason = denyMsg;
+		this.cost = cost;
 	}
 	
 	public Player getPlayer() {
 		return player;
 	}
 	
-	public ArrayList<String> getDestinations() {
-		return destinations;
+	public boolean getDeny() {
+		return deny;
 	}
 	
-	public void setDestinations(ArrayList<String> destinations) {
-		this.destinations = destinations;
+	public void setDeny(boolean deny) {
+		this.deny = deny;
 	}
 	
-	public String getDestination() {
-		return destination;
+	public String getDenyReason() {
+		return denyReason;
 	}
 	
-	public void setDestination(String destination) {
-		this.destination = destination;
+	public void setDenyReason(String denyReason) {
+		this.denyReason = denyReason;
 	}
+	
+	public int getCost() {
+		return cost;
+	}
+	
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
+
 }

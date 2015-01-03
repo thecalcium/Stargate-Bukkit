@@ -1,4 +1,4 @@
-package net.TheDgtl.Stargate;
+package net.thedgtl.stargate;
 
 public class BloxPopulator {
 	private Blox blox;

@@ -1,10 +1,9 @@
-package net.TheDgtl.Stargate.event;
+package net.thedgtl.stargate.event;
 
-import net.TheDgtl.Stargate.Portal;
-
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
+
+import net.thedgtl.stargate.Portal;
 
 /**
  * Stargate - A portal plugin for Bukkit
@@ -24,10 +23,9 @@ import org.bukkit.event.HandlerList;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class StargatePortalEvent extends StargateEvent {
+public class StargateAccessEvent extends StargateEvent {
 	private Player player;
-	private Portal destination;
-	private Location exit;
+	private boolean deny;
 	
 	private static final HandlerList handlers = new HandlerList();
 	
@@ -39,42 +37,23 @@ public class StargatePortalEvent extends StargateEvent {
 		return handlers;
 	}
 	
-	public StargatePortalEvent(Player player, Portal portal, Portal dest, Location exit) {
-		super ("StargatePortalEvent", portal);
+	public StargateAccessEvent(Player player, Portal portal, boolean deny) {
+		super("StargateAccessEvent", portal);
 		
 		this.player = player;
-		this.destination = dest;
-		this.exit = exit;
+		this.deny = deny;
 	}
 	
-	/**
-	 * Return the player that went through the gate.
-	 * @return player that went through the gate
-	 */
+	public boolean getDeny() {
+		return this.deny;
+	}
+	
+	public void setDeny(boolean deny) {
+		this.deny = deny;
+	}
+	
 	public Player getPlayer() {
-		return player;
+		return this.player;
 	}
-	
-	/**
-	 * Return the destination gate
-	 * @return destination gate
-	 */
-	public Portal getDestination() {
-		return destination;
-	}
-	
-	/**
-	 * Return the location of the players exit point
-	 * @return org.bukkit.Location Location of the exit point
-	 */
-	public Location getExit() {
-		return exit;
-	}
-	
-	/**
-	 * Set the location of the players exit point
-	 */
-	public void setExit(Location loc) {
-		this.exit = loc;
-	}
+
 }

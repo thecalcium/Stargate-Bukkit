@@ -1,9 +1,11 @@
 name: Stargate
-main: net.TheDgtl.Stargate.Stargate
-version: 0.7.9.10
+main: net.thedgtl.stargate.Stargate
+version: ${version}-${project.build.number}
 description: Stargate mod for Bukkit
-author: Drakia
+author: Drakia, CyberTiger
 website: http://www.thedgtl.net
+softdepend:
+        - Vault
 commands:
   sg:
     description: Used to reload the plugin. Console use only.
