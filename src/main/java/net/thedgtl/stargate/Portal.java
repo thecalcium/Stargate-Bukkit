@@ -366,7 +366,11 @@ public final class Portal {
 
         int openType = gate.getPortalBlockOpen();
         for (Blox inside : getEntrances()) {
-            stargate.blockPopulatorQueue.add(new BloxPopulator(inside, openType));
+            byte data = 0;
+            if (openType == Material.PORTAL.getId()) {
+                data = (rotX == 90f || rotX == 270f) ? (byte)2 : (byte)0;
+            }
+            stargate.blockPopulatorQueue.add(new BloxPopulator(inside, openType, data));
         }
 
         isOpen = true;
