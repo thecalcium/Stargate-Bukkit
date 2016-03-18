@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.logging.Level;
+import java.util.Set;
 
 import net.thedgtl.stargate.event.StargateAccessEvent;
 import net.thedgtl.stargate.event.StargateDestroyEvent;
@@ -981,7 +982,7 @@ public final class Stargate extends JavaPlugin {
             Block block = null;
             if (event.isCancelled() && event.getAction() == Action.RIGHT_CLICK_AIR) {
                 try {
-                    block = player.getTargetBlock(null, 5);
+                    block = player.getTargetBlock((Set<Material>)null, 5);
                 } catch (IllegalStateException ex) {
                     // We can safely ignore this exception, it only happens in void or max height
                     return;
